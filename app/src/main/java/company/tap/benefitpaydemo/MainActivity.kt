@@ -1,8 +1,10 @@
 package company.tap.benefitpaydemo
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import mobi.foo.benefitinapp.data.Transaction
@@ -15,14 +17,16 @@ class MainActivity : AppCompatActivity() ,CheckoutListener {
     val appId:String="4530082749"
     val merchantId:String="00000101"
     val seceret:String="3l5e0cstdim11skgwoha8x9vx9zo0kxxi4droryjp4eqd"
-    val currency:String="1001"
+    val countrycode:String="1001"
     val mcc:String="4816"
+     private val context: Context?=null
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        this.context
 
 
        checkout_btn.setListener(object : BenefitInAppButtonListener {
@@ -30,17 +34,17 @@ class MainActivity : AppCompatActivity() ,CheckoutListener {
                BenefitInAppCheckout.newInstance(
                    this@MainActivity,
                    appId,
-                   null,
+                   "tap1 android",
                    merchantId,
                    seceret,
-                   null,
-                   null,
-                   currency,
+                   "15.000",
+                   countrycode,
+                   "048",
                    mcc,
-                   null,
-                   null,
+                   "aabcd",
+                   "Manama",
                    this@MainActivity)
-                println("values set in benefit checckout are ${"app val : "+ appId +"merchant id :"+ merchantId +"sceret : " + seceret+"currency are :"+ currency +"mcc val : "+mcc } ")
+                println("values set in benefit checckout are ${"app val : "+ appId +"merchant id :"+ merchantId +"sceret : " + seceret+"countrycode are :"+ countrycode +"mcc val : "+mcc } ")
            }
 
            override fun onFail(p0: Int) {
@@ -62,6 +66,7 @@ class MainActivity : AppCompatActivity() ,CheckoutListener {
 
     override fun onTransactionSuccess(p0: Transaction?) {
         println("transaction is success $p0")
+        Toast.makeText(this, p0?.transactionMessage, Toast.LENGTH_SHORT).show()
     }
 
     override fun onTransactionFail(p0: Transaction?) {
