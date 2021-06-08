@@ -7,12 +7,20 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
 
     <mobi.foo.benefitinapp.utils.BenefitInAppButton
         android:id="@+id/checkout_btn"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="wrap_content"
+       android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300dp"
+        android:onClick="onButtonClicked"
+       />
 
 
 </LinearLayout>

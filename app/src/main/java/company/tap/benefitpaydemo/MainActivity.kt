@@ -13,7 +13,7 @@ import mobi.foo.benefitinapp.listener.CheckoutListener
 import mobi.foo.benefitinapp.utils.BenefitInAppCheckout
 import mobi.foo.benefitinapp.utils.BenefitInAppHelper
 
-class MainActivity : AppCompatActivity() ,CheckoutListener {
+class MainActivity : AppCompatActivity() ,CheckoutListener,BenefitInAppButtonListener {
     val appId:String="4530082749"
     val merchantId:String="00000101"
     val seceret:String="3l5e0cstdim11skgwoha8x9vx9zo0kxxi4droryjp4eqd"
@@ -27,21 +27,22 @@ class MainActivity : AppCompatActivity() ,CheckoutListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.context
+        checkout_btn.setListener(this)
 
 
-       checkout_btn.setListener(object : BenefitInAppButtonListener {
+     /*  checkout_btn.setListener(object : BenefitInAppButtonListener {
            override fun onButtonClicked() {
                BenefitInAppCheckout.newInstance(
                    this@MainActivity,
                    appId,
-                   "tap1 android",
+                   "445544",
                    merchantId,
                    seceret,
-                   "15.000",
-                   countrycode,
+                   "20.0",
+                   "BH",
                    "048",
                    mcc,
-                   "aabcd",
+                   "Tap",
                    "Manama",
                    this@MainActivity)
                 println("values set in benefit checckout are ${"app val : "+ appId +"merchant id :"+ merchantId +"sceret : " + seceret+"countrycode are :"+ countrycode +"mcc val : "+mcc } ")
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() ,CheckoutListener {
            }
 
 
-       })
+       })*/
 
     }
 
@@ -70,7 +71,28 @@ class MainActivity : AppCompatActivity() ,CheckoutListener {
     }
 
     override fun onTransactionFail(p0: Transaction?) {
-        println("transaction is success $p0")
+        println("onTransactionFail is  $p0")
+    }
+
+    override fun onButtonClicked() {
+        BenefitInAppCheckout.newInstance(
+            this@MainActivity,
+            appId,
+            "445544",
+            merchantId,
+            seceret,
+            "20.0",
+            "BH",
+            "048",
+            mcc,
+            "Tap",
+            "Manama",
+            this@MainActivity)
+        println("values set in benefit checckout are ${"app val : "+ appId +"merchant id :"+ merchantId +"sceret : " + seceret+"countrycode are :"+ countrycode +"mcc val : "+mcc } ")
+    }
+
+    override fun onFail(p0: Int) {
+        println("failed is value is  ${p0}")
     }
 
 }
