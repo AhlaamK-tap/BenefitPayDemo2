@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() ,CheckoutListener,BenefitInAppButtonLis
         BenefitInAppCheckout.newInstance(
             this@MainActivity,
             appId,
-            "445544",
+            "448544",
             merchantId,
             seceret,
             "20.0",
